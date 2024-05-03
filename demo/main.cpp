@@ -1,3 +1,4 @@
+//main.cpp
 #include <memory>
 #include <iostream>
 #include "udp_socket.h"
@@ -17,11 +18,13 @@ namespace
 
 int main(int /* argc */, char** /* argv */)
 {
-    auto s1 = std::make_shared<udp_socket_t>(5000);
-    if(!s1->is_valid()) return 1;
+    auto s1 = udp_socket_t::create_udp_socket(5000);
+    if(!s1) 
+        return 1;
 
-    auto s2 = std::make_shared<udp_socket_t>(6000);
-    if(!s2->is_valid()) return 1;
+    auto s2 = udp_socket_t::create_udp_socket(6000);
+    if(!s2) 
+        return 1;
 
     reactor_t reactor;
 
